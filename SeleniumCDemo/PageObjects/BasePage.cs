@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 using System;
 
 namespace SeleniumCDemo.PageObjects
@@ -61,11 +62,39 @@ namespace SeleniumCDemo.PageObjects
             }
         }
 
+        public IWebElement waitForElementToBeClickable(IWebElement element, int timeoutInSeconds)
+        {
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
+                IWebElement elementToWaitFor = wait.Until(ExpectedConditions.ElementToBeClickable(element));
+                return elementToWaitFor;
+            }
+            catch (Exception ex) when (ex is OpenQA.Selenium.NoSuchElementException || ex is SystemException)
+            {
+                Console.WriteLine("Error: " + ex);
+                return null;
+            }
+        }
         public void clickButton(IWebElement buttonToClick)
         {
             try
             {
+                this.waitForElementToBeClickable(buttonToClick, 3);
                 buttonToClick.Click();
+            }
+            catch (OpenQA.Selenium.NoSuchElementException e)
+            {
+                Console.WriteLine("Error: " + e);
+            }
+        }
+
+        public void selectValueInDropdown(IWebElement elementWithSelect, String valueToSelect)
+        {
+            try
+            {
+                var selectElement = new SelectElement(elementWithSelect);
+                selectElement.SelectByText(valueToSelect);
             }
             catch (OpenQA.Selenium.NoSuchElementException e)
             {

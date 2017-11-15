@@ -21,6 +21,15 @@ namespace SeleniumCDemo.PageObjects
         [FindsBy(How = How.Id, Using = "existing")]
         public IWebElement copyExistingSurveyButton { get; set; }
 
+        [FindsBy(How = How.Id, Using = "surveyTitle")]
+        public IWebElement modalPopupSurveyNameEdit { get; set; }
+
+        [FindsBy(How = How.Id, Using = "react-select-2--value")]
+        public IWebElement modalPopupSurveyCategorySelect { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='scratch-modal-button-container']/button")]
+        public IWebElement modalPopupSurveyCreateSurveyButton { get; set; }
+
 
         public void clickStartFromScratchButton()
         {
@@ -29,6 +38,21 @@ namespace SeleniumCDemo.PageObjects
 
         public void clickCopyExistingSurveyButton()
         {
+            this.clickButton(this.copyExistingSurveyButton);
+        }
+
+        //Assumes modal pupup is present
+        public void createSurveyName(String surveyName)
+        {
+            this.modalPopupSurveyNameEdit.SendKeys(surveyName);
+            this.clickButton(modalPopupSurveyCreateSurveyButton);
+        }
+
+        //overloaded version if category is suppied as well
+        public void createSurveyName(String surveyName, String surveyCategory)
+        {
+            this.modalPopupSurveyNameEdit.SendKeys(surveyName);
+            this.modalPopupSurveyCategorySelect.SendKeys(surveyCategory);
             this.clickButton(this.copyExistingSurveyButton);
         }
 

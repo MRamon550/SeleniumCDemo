@@ -62,11 +62,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PageObjects\BasePage.cs" />
+    <Compile Include="PageObjects\CollectionDetailsPage.cs" />
     <Compile Include="PageObjects\DashboardPage.cs" />
     <Compile Include="PageObjects\DashboardSurveyListPage.cs" />
+    <Compile Include="PageObjects\EditSurveyPage.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\PFactory.cs" />
+    <Compile Include="PageObjects\CollectionsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="TestCases\GeneralTests.cs" />

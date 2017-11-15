@@ -31,7 +31,23 @@ namespace SeleniumCDemo.TestCases
             //start survey creation
             pFactory.dashboardPage(driver).clickCreateSurveyButton();
             pFactory.dashboardSurveyListPage(driver).clickStartFromScratchButton();
+            pFactory.dashboardSurveyListPage(driver).createSurveyName(userData.surveyName);
+            pFactory.editSurveyPage(driver).enterSingleTextboxQuestion(userData.question1);
+            pFactory.editSurveyPage(driver).enterSingleTextboxQuestion(userData.question2);
+            pFactory.editSurveyPage(driver).enterSingleTextboxQuestion(userData.question3);
 
+            //move to final page
+            pFactory.editSurveyPage(driver).clickNextQuestionButton();
+
+            // get web link and output to console
+            pFactory.collectionsPage(driver).clickWebLinkButton();
+            pFactory.collectionDetailsPage(driver).waitForElementToBeClickable(pFactory.collectionDetailsPage(driver).webLinkURLLabel, 3);
+            String weblinkURL = pFactory.collectionDetailsPage(driver).webLinkURLLabel.Text;
+            Console.Write("Test Success - Web link for survey is: " + weblinkURL);
+
+            //Wait on this page for no reason other than to emphasize test is completed
+            System.Threading.Thread.Sleep(3000);
+            
             //close the browser
             driver.Quit();
         }

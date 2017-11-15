@@ -4,6 +4,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using SeleniumCDemo.PageObjects;
 using System;
+using System.Diagnostics;
 
 namespace SeleniumCDemo
 {
@@ -14,6 +15,8 @@ namespace SeleniumCDemo
 
         [SetUp]
         public void setUp() {
+            //close any browser instances before running to ensure a clean run
+            this.closeBrowserInstance("");
             // initiliaze driver
             driver = this.selectBrowser("firefox");
             pFactory = new PFactory(driver);
@@ -45,6 +48,20 @@ namespace SeleniumCDemo
             // maximize window
             driver.Manage().Window.Maximize();
             return driver;
+        }
+        
+        // this is used to kill a browser instance before running test suite
+        public void closeBrowserInstance(String browserToClose) {
+            Process[] AllProcesses = Process.GetProcesses();
+            foreach (var process in AllProcesses)
+            {
+                if (process.MainWindowTitle != "")
+                {
+                    string s = process.ProcessName.ToLower();
+                    if (s == "iexplore" || s == "iexplorer" || s == "chrome" || s == "firefox")
+                        process.Kill();
+                }
+            }
         }
     }
 }

@@ -26,5 +26,21 @@ namespace SeleniumCDemo.PageObjects
         {
             return new DashboardSurveyListPage(driver);
         }
+
+        public EditSurveyPage editSurveyPage(IWebDriver driver)
+        {
+            return new EditSurveyPage(driver);
+        }
+
+        public CollectionsPage collectionsPage(IWebDriver driver)
+        {
+            return new CollectionsPage(driver);
+        }
+        
+         public CollectionDetailsPage collectionDetailsPage(IWebDriver driver)
+        {
+            return new CollectionDetailsPage(driver);
+        }
+
     }
 }
