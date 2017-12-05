@@ -27,4 +27,35 @@ namespace SeleniumCDemo.PageObjects
             }
         }
     }
+    class UserData
+    {
+        public string key { get; set; }
+        public string targetURL { get; set; }
+        public string userName { get; set; }
+        public string userPass { get; set; }
+        public string surveyName { get; set; }
+        // how do I get question1.questionType?  create a question class?
+        public string question1 { get; set; }
+        public string question2 { get; set; }
+        public string question3 { get; set; }
+        public string question4 { get; set; }
+
+        public string getQuestionType(string questionToParse)
+        {
+            string[] questionArray = questionToParse.Split('|');
+            return questionArray[0];
+        }
+
+        public string getQuestionTitle(string questionToParse)
+        {
+            string[] questionArray = questionToParse.Split('|');
+            return questionArray[1];
+        }
+
+        public string getQuestionOptions(string questionToParse)
+        {
+            string[] questionArray = questionToParse.Split('?');
+            return questionArray[1];
+        }
+    }
 }

@@ -4,6 +4,7 @@ namespace SeleniumCDemo.PageObjects
 {
     class PFactory
     {
+        // I tried remover the passed in driver but it broke too much so reverted
         public PFactory(IWebDriver driver) { }
 
         public HomePage homePage(IWebDriver driver)
@@ -40,6 +41,16 @@ namespace SeleniumCDemo.PageObjects
          public CollectionDetailsPage collectionDetailsPage(IWebDriver driver)
         {
             return new CollectionDetailsPage(driver);
+        }
+
+        public MySurveysPage mySurveysPage(IWebDriver driver)
+        {
+            return new MySurveysPage(driver);
+        }
+
+        public NavBar navBar(IWebDriver driver)
+        {
+            return new NavBar(driver);
         }
 
     }

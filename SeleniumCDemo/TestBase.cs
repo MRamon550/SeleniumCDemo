@@ -12,18 +12,24 @@ namespace SeleniumCDemo
     {
         public static IWebDriver driver;
         public static PFactory pFactory;
+        public static String targetBrowser;
 
         [SetUp]
-        public void setUp() {
+        public void setUp()
+        {
+            targetBrowser = "firefox";
             //close any browser instances before running to ensure a clean run
-            this.closeBrowserInstance("");
-            // initiliaze driver
-            driver = this.selectBrowser("firefox");
+            this.closeBrowserInstance(targetBrowser);
+            // initialize driver
+            driver = this.selectBrowser(targetBrowser);
             pFactory = new PFactory(driver);
+            // c;ean any cookies to ensure clean session 
+            driver.Manage().Cookies.DeleteAllCookies();
         }
 
         [TearDown]
-        public void tearDown() {
+        public void tearDown()
+        {
             driver.Quit();
         }
 
@@ -49,19 +55,23 @@ namespace SeleniumCDemo
             driver.Manage().Window.Maximize();
             return driver;
         }
-        
+
         // this is used to kill a browser instance before running test suite
-        public void closeBrowserInstance(String browserToClose) {
+        public void closeBrowserInstance(String browserToClose)
+        {
             Process[] AllProcesses = Process.GetProcesses();
             foreach (var process in AllProcesses)
             {
                 if (process.MainWindowTitle != "")
                 {
                     string s = process.ProcessName.ToLower();
-                    if (s == "iexplore" || s == "iexplorer" || s == "chrome" || s == "firefox")
+                    //if (s == "iexplore" || s == "iexplorer" || s == "chrome" || s == "firefox")
+                    if (s == targetBrowser)
                         process.Kill();
                 }
             }
         }
+
     }
 }
+
