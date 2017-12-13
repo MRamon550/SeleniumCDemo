@@ -117,6 +117,31 @@ namespace SeleniumCDemo.PageObjects
             this.clickAddNewQuestionSaveButton();
         }
 
+        public void enterDropdownQuestion(String questionTitle, String questionChoices)
+        {
+            // declare single textbox By
+            By byTargetDropdown = By.CssSelector("a[data-action='CommentBoxQuestion']");
+            //wait explicitly for a few seconds to offset page load
+            this.wait(3);
+            this.clickAddNewQuestionButton();
+            this.wait(2);
+            this.moveToElement(this.addPageTitleButton);
+            this.waitForElementToBeClickable(addNewQuestionTypeDropdown, 5).Click();
+            this.waitForElementToBeClickable(driver.FindElement(byTargetDropdown), 5).Click();
+            this.setTextInElement(addNewQuestionInputEdit, questionTitle);
+
+            // The stupid question bank is here so tabbing to next field to dismiss
+            this.addNewQuestionInputEdit.SendKeys(Keys.Tab);
+
+            // Split questionChoices
+            String[] choiceArray = questionChoices.Split('|');
+            foreach (var choice in choiceArray)
+            {
+                this.setTextInElement(getNextAvailableCheckboxAnswerEdit(), choice);
+            }
+            this.clickAddNewQuestionSaveButton();
+        }
+
         public void addCheckboxValues(String questionTitle, String questionValues)
         {
             foreach (var question in questionValues) {
@@ -134,6 +159,9 @@ namespace SeleniumCDemo.PageObjects
                     this.enterSingleTextboxQuestion(questionTitle);
                     break;
                 case "checkbox":
+                    this.enterCheckboxQuestion(questionTitle, "Male|Female");
+                    break;
+                case "dropdown":
                     this.enterCheckboxQuestion(questionTitle, "Male|Female");
                     break;
                 default:

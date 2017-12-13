@@ -39,6 +39,7 @@ namespace SeleniumCDemo.PageObjects
         public string question2 { get; set; }
         public string question3 { get; set; }
         public string question4 { get; set; }
+        public string question5 { get; set; }
 
         public string getQuestionType(string questionToParse)
         {

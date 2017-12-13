@@ -36,6 +36,7 @@ namespace SeleniumCDemo.TestCases
             pFactory.editSurveyPage(driver).enterSurveyQuestion(userData.getQuestionType(userData.question2), userData.getQuestionTitle(userData.question2));
             pFactory.editSurveyPage(driver).enterSurveyQuestion(userData.getQuestionType(userData.question3), userData.getQuestionTitle(userData.question3));
             pFactory.editSurveyPage(driver).enterSurveyQuestion(userData.getQuestionType(userData.question4), userData.getQuestionTitle(userData.question4));
+            pFactory.editSurveyPage(driver).enterSurveyQuestion(userData.getQuestionType(userData.question5), userData.getQuestionTitle(userData.question4));
 
             // refresh the page to reduce sync errors
             driver.Navigate().Refresh();

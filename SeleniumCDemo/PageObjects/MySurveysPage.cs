@@ -41,7 +41,9 @@ namespace SeleniumCDemo.PageObjects
             // this.switchToIFrame("__cvo_iframe");
             // Boolean truth = driver.FindElement(By.CssSelector("a.wds-button.wds-button--warning.delete-survey")).Displayed;
             //And confirm
-            driver.SwitchTo().Frame(0);
+            driver.SwitchTo().Alert();
+            this.confirmDeleteSurveyButton.Click();
+            
             IList<IWebElement> frameList = driver.FindElements(By.TagName("iframe"));
             foreach(IWebElement frameElement in frameList){
                 // switch to first frame in list

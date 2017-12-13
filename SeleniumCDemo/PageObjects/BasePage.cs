@@ -109,6 +109,8 @@ namespace SeleniumCDemo.PageObjects
         {
             try
             {
+                // explicitly wait for one second to avoid sync errors, then wwait for element
+                this.wait(1);
                 this.waitForElementToBeClickable(buttonToClick, 5);
                 buttonToClick.Click();
             }
