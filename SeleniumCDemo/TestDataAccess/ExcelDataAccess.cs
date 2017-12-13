@@ -49,11 +49,12 @@ namespace SeleniumCDemo.PageObjects
 
         public string getQuestionTitle(string questionToParse)
         {
-            string[] questionArray = questionToParse.Split('|');
-            return questionArray[1];
+            string[] initialQuestionArray = questionToParse.Split('|');
+            string[] questionArray = initialQuestionArray[1].Split('?');
+            return questionArray[0] +"?";
         }
 
-        public string getQuestionOptions(string questionToParse)
+        public string getQuestionChoices(string questionToParse)
         {
             string[] questionArray = questionToParse.Split('?');
             return questionArray[1];

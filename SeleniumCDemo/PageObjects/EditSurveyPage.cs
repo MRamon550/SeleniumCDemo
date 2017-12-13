@@ -87,6 +87,8 @@ namespace SeleniumCDemo.PageObjects
             this.waitForElementToBeClickable(addNewQuestionTypeDropdown, 5).Click();
             this.waitForElementToBeClickable(driver.FindElement(byTargetDropdown), 5).Click();
             this.setTextInElement(addNewQuestionInputEdit, questionTitle);
+            //the dropdown can obscure the new question button so tabbing here to clear
+            this.addNewQuestionButton.SendKeys(Keys.Tab);
             this.clickAddNewQuestionSaveButton();
         }
 
@@ -151,7 +153,7 @@ namespace SeleniumCDemo.PageObjects
         }
 
         // this creates a survey question based on question type
-        public void enterSurveyQuestion(String questionType, String questionTitle)
+        public void enterSurveyQuestion(String questionType, String questionTitle, String questionChoices)
         {
             switch (questionType)
             {
@@ -159,10 +161,10 @@ namespace SeleniumCDemo.PageObjects
                     this.enterSingleTextboxQuestion(questionTitle);
                     break;
                 case "checkbox":
-                    this.enterCheckboxQuestion(questionTitle, "Male|Female");
+                    this.enterCheckboxQuestion(questionTitle, questionChoices);
                     break;
                 case "dropdown":
-                    this.enterCheckboxQuestion(questionTitle, "Male|Female");
+                    this.enterCheckboxQuestion(questionTitle, questionChoices);
                     break;
                 default:
                     Console.WriteLine("Error: questionType of " + questionType + " is not currently supported.  Please contact an administrator");

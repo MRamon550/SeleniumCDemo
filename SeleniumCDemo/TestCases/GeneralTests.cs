@@ -32,11 +32,11 @@ namespace SeleniumCDemo.TestCases
             pFactory.dashboardPage(driver).clickCreateSurveyButton();
             pFactory.dashboardSurveyListPage(driver).clickStartFromScratchButton();
             pFactory.dashboardSurveyListPage(driver).createSurveyName(userData.surveyName);
-            pFactory.editSurveyPage(driver).enterSurveyQuestion(userData.getQuestionType(userData.question1), userData.getQuestionTitle(userData.question1));
-            pFactory.editSurveyPage(driver).enterSurveyQuestion(userData.getQuestionType(userData.question2), userData.getQuestionTitle(userData.question2));
-            pFactory.editSurveyPage(driver).enterSurveyQuestion(userData.getQuestionType(userData.question3), userData.getQuestionTitle(userData.question3));
-            pFactory.editSurveyPage(driver).enterSurveyQuestion(userData.getQuestionType(userData.question4), userData.getQuestionTitle(userData.question4));
-            pFactory.editSurveyPage(driver).enterSurveyQuestion(userData.getQuestionType(userData.question5), userData.getQuestionTitle(userData.question4));
+            pFactory.editSurveyPage(driver).enterSurveyQuestion(userData.getQuestionType(userData.question1), userData.getQuestionTitle(userData.question1), userData.getQuestionChoices(userData.question1));
+            pFactory.editSurveyPage(driver).enterSurveyQuestion(userData.getQuestionType(userData.question2), userData.getQuestionTitle(userData.question2), userData.getQuestionChoices(userData.question2));
+            pFactory.editSurveyPage(driver).enterSurveyQuestion(userData.getQuestionType(userData.question3), userData.getQuestionTitle(userData.question3), userData.getQuestionChoices(userData.question3));
+            pFactory.editSurveyPage(driver).enterSurveyQuestion(userData.getQuestionType(userData.question4), userData.getQuestionTitle(userData.question4), userData.getQuestionChoices(userData.question4));
+            pFactory.editSurveyPage(driver).enterSurveyQuestion(userData.getQuestionType(userData.question5), userData.getQuestionTitle(userData.question5), userData.getQuestionChoices(userData.question5));
 
             // refresh the page to reduce sync errors
             driver.Navigate().Refresh();
@@ -54,9 +54,9 @@ namespace SeleniumCDemo.TestCases
             pFactory.collectionDetailsPage(driver).wait(2);
 
             //navigate to my surveys page for deletion
-            pFactory.navBar(driver).navigateToMySurveysPage();
-            pFactory.mySurveysPage(driver).deleteFirstSurvey();
-            
+            //pFactory.navBar(driver).navigateToMySurveysPage();
+            //pFactory.mySurveysPage(driver).deleteFirstSurvey();
+
             //close the browser
             driver.Quit();
         }

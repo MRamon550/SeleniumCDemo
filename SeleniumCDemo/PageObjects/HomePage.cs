@@ -18,29 +18,11 @@ namespace SeleniumCDemo.PageObjects
         [FindsBy(How = How.CssSelector, Using = "a[class^='log-in'], a[class^='sign-in']")]
         public IWebElement signInButton { get; set; }
 
-        //[FindsBy(How = How.CssSelector, Using = "a.sign-in.static-buttons")]
-        //public IWebElement signInButton { get; set; }
-
-        //[FindsBy(How = How.CssSelector, Using = "a.log-in.show_signup_nav.static-buttons")]
-        //public IWebElement alternateSignInButton { get; set; }
-
-        //[FindsBy(How = How.CssSelector, Using = "a.log-in.show_signup_nav.static-buttons")]
-        //public IWebElement doubleAlternateSignInButton { get; set; }
-
-
-        public void clickSignInButton()
+         public void clickSignInButton()
         {
             // wait for header element to be present before trying to click the sign in button
             this.waitForElementToBeClickable(headerLabel, 5);
             this.clickButton(signInButton);
-            // clicks the correct sign in button depending on which button is present
-            //if (driver.FindElements(By.CssSelector("a.sign-in.static-buttons")).Count == 1)
-            //{
-            //    this.clickButton(signInButton);
-            //}
-            //else {
-            //    this.clickButton(alternateSignInButton);
-            //}
         }
 
         public new String getTitle()

@@ -25,8 +25,9 @@ namespace SeleniumCDemo
             pFactory = new PFactory(driver);
             // c;ean any cookies to ensure clean session 
             driver.Manage().Cookies.DeleteAllCookies();
-            //set the implicit wait 
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            // set the wait times - surveymonkey can be pretty slow so setting a long timeout
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
         }
 
         [TearDown]
